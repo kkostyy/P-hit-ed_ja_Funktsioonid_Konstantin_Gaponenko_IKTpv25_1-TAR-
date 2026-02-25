@@ -1,0 +1,1 @@
+# Põhitõed_ja_Funktsioonid_Konstantin_Gaponenko_IKTpv25_1(TAR)
