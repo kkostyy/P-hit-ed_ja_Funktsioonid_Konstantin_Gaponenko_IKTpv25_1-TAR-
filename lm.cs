@@ -9,13 +9,28 @@ namespace Põhitõed_ja_Funktsioonid_Konstantin_Gaponenko_IKTpv25_1_TAR
         public static void KytuseKalkulaator()
         {
             Console.Write("Sisesta km: ");
-            double km = Convert.ToDouble(Console.ReadLine());
+            double km;
+            if (!double.TryParse(Console.ReadLine(), out km))
+            {
+                Console.WriteLine("Viga! Sisesta number.");
+                return;
+            }
 
             Console.Write("Sisesta kulu per 100km: ");
-            double kulu = Convert.ToDouble(Console.ReadLine());
+            double kulu;
+            if (!double.TryParse(Console.ReadLine(), out kulu))
+            {
+                Console.WriteLine("Viga! Sisesta number.");
+                return;
+            }
 
             Console.Write("Sisesta liitri hind: ");
-            double hind = Convert.ToDouble(Console.ReadLine());
+            double hind;
+            if (!double.TryParse(Console.ReadLine(), out hind))
+            {
+                Console.WriteLine("Viga! Sisesta number.");
+                return;
+            }
 
             double liitrid = km / 100 * kulu;
             double maksumus = liitrid * hind;
@@ -27,17 +42,19 @@ namespace Põhitõed_ja_Funktsioonid_Konstantin_Gaponenko_IKTpv25_1_TAR
         // Ülesanne 2: Isikukoodi dekooder
         public static void HindaIsikukood(string kood)
         {
-            // Kontrollime pikkust
             if (kood.Length != 11)
             {
                 Console.WriteLine("Viga! Isikukood peab olema 11 märki.");
                 return;
             }
 
-            // Võtame esimese numbri
-            int esimene = int.Parse(kood.Substring(0, 1));
+            int esimene;
+            if (!int.TryParse(kood.Substring(0, 1), out esimene))
+            {
+                Console.WriteLine("Viga! Esimene märk peab olema number.");
+                return;
+            }
 
-            // Määrame soo
             string sugu = "Tundmatu";
             if (esimene == 1 || esimene == 3 || esimene == 5)
             {
@@ -48,7 +65,6 @@ namespace Põhitõed_ja_Funktsioonid_Konstantin_Gaponenko_IKTpv25_1_TAR
                 sugu = "Naine";
             }
 
-            // Määrame sajandi
             int sajand = 2000;
             if (esimene == 1 || esimene == 2)
             {
@@ -59,10 +75,15 @@ namespace Põhitõed_ja_Funktsioonid_Konstantin_Gaponenko_IKTpv25_1_TAR
                 sajand = 1900;
             }
 
-            // Võtame sünnikuupäeva osad
-            int aastaLõpp = int.Parse(kood.Substring(1, 2));
+            int aastaLõpp;
+            if (!int.TryParse(kood.Substring(1, 2), out aastaLõpp))
+            {
+                Console.WriteLine("Viga! Sünniaasta osa ei ole number.");
+                return;
+            }
+
             int aasta = sajand + aastaLõpp;
-            string kuu = kood.Substring(3, 2);
+            string kuu  = kood.Substring(3, 2);
             string paev = kood.Substring(5, 2);
 
             Console.WriteLine("Oled " + sugu + ", sündinud " + paev + "." + kuu + "." + aasta);
@@ -75,7 +96,6 @@ namespace Põhitõed_ja_Funktsioonid_Konstantin_Gaponenko_IKTpv25_1_TAR
             List<int> summad = new List<int>();
             int duubleid = 0;
 
-            // Viskame 10 korda
             for (int i = 0; i < 10; i++)
             {
                 int t1 = rand.Next(1, 7);
@@ -92,7 +112,6 @@ namespace Põhitõed_ja_Funktsioonid_Konstantin_Gaponenko_IKTpv25_1_TAR
                 Console.WriteLine("Vise " + (i + 1) + ": [" + t1 + "] + [" + t2 + "] = " + summa);
             }
 
-            // Arvutame kogusumma ja kuvame kõik summad
             int kogusumma = 0;
             Console.Write("Kõik summad: ");
             for (int i = 0; i < summad.Count; i++)
@@ -109,19 +128,16 @@ namespace Põhitõed_ja_Funktsioonid_Konstantin_Gaponenko_IKTpv25_1_TAR
         // Ülesanne 4: Palgaarvestus
         public static Tuple<double, double> ArvutaPalk(double bruto)
         {
-            // Maksuvaba tulu
             double maksuvaba = 0;
             if (bruto < 1200)
             {
                 maksuvaba = 654;
             }
 
-            // Mahaarvamised
-            double tootus = bruto * 0.016;  
-            double pension = bruto * 0.02;   
-            double tulumaks = (bruto - maksuvaba) * 0.20;  
+            double tootus   = bruto * 0.016;
+            double pension  = bruto * 0.02;
+            double tulumaks = (bruto - maksuvaba) * 0.20;
 
-            // Netopalk
             double neto = bruto - tootus - pension - tulumaks;
 
             Console.WriteLine("Maksuvaba tulu: " + maksuvaba + " €");
@@ -129,6 +145,5 @@ namespace Põhitõed_ja_Funktsioonid_Konstantin_Gaponenko_IKTpv25_1_TAR
 
             return Tuple.Create(maksuvaba, neto);
         }
-    
     }
-} 
+}
