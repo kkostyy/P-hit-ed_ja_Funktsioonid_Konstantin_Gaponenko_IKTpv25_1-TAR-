@@ -39,9 +39,9 @@ namespace Põhitõed_ja_Funktsioonid_Konstantin_Gaponenko_IKTpv25_1_TAR
                         {
                             Tuple<double, double> tulemus = Alamfunktsioonid.ArvutaPalk(brutopalk);
                             Console.WriteLine($"\n--- Palgaarvestus ---");
-                            Console.WriteLine($"Brutopalk:          {brutopalk:F2} €");
-                            Console.WriteLine($"Maksuvaba tulu:     {tulemus.Item1:F2} €");
-                            Console.WriteLine($"Netopalk kätte:     {tulemus.Item2:F2} €");
+                            Console.WriteLine($"Brutopalk: {brutopalk:F2} €");
+                            Console.WriteLine($"Maksuvaba tulu: {tulemus.Item1:F2} €");
+                            Console.WriteLine($"Netopalk kätte: {tulemus.Item2:F2} €");
                         }
                         else
                         {
