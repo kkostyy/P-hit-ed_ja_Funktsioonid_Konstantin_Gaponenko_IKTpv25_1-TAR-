@@ -109,28 +109,26 @@ namespace Põhitõed_ja_Funktsioonid_Konstantin_Gaponenko_IKTpv25_1_TAR
         // Ülesanne 4: Palgaarvestus
         public static Tuple<double, double> ArvutaPalk(double bruto)
         {
-            // Maksuvaba miinimum
+            // Maksuvaba tulu
             double maksuvaba = 0;
             if (bruto < 1200)
             {
                 maksuvaba = 654;
             }
 
-            // Arvutame mahaarvamised
-            double tootus = bruto * 0.016;
-            double pension = bruto * 0.02;
+            // Mahaarvamised
+            double tootus = bruto * 0.016;  
+            double pension = bruto * 0.02;   
+            double tulumaks = (bruto - maksuvaba) * 0.20;  
 
-            double maksustatav = bruto - maksuvaba;
-            if (maksustatav < 0)
-            {
-                maksustatav = 0;
-            }
-            double tulumaks = maksustatav * 0.20;
-
-            // Lõplik netopalk
+            // Netopalk
             double neto = bruto - tootus - pension - tulumaks;
+
+            Console.WriteLine("Maksuvaba tulu: " + maksuvaba + " €");
+            Console.WriteLine("Netopalk: " + neto + " €");
 
             return Tuple.Create(maksuvaba, neto);
         }
+    
     }
-}
+} 
